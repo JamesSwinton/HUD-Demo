@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory app:title="HUD Settings" app:iconSpaceReserved="false">
+
+    <SeekBarPreference
+      app:key="hud_scale"
+      app:title="Scale"
+      app:min="20"
+      app:seekBarIncrement="20"
+      app:summary="Adjust HUD scale"
+      app:icon="@drawable/ic_resize"
+      android:max="100"
+      android:defaultValue="100"/>
+
+    <SeekBarPreference
+      app:key="hud_brightness"
+      app:title="Brightness"
+      app:min="20"
+      app:seekBarIncrement="20"
+      app:summary="Adjust HUD brightness"
+      app:icon="@drawable/ic_brightness"
+      android:max="100"
+      android:defaultValue="100"/>
+
+  </PreferenceCategory>
+
+  <PreferenceCategory app:title="Slide Settings" app:iconSpaceReserved="false">
+
+    <CheckBoxPreference
+      app:key="hud_timer"
+      app:title="Auto Move Slides"
+      app:summary="Automatically progress through slides"
+      app:defaultValue="false"
+      android:enabled="false"/>
+
+    <EditTextPreference
+      app:key="hud_timer_interval"
+      app:title="Slide Interval"
+      app:summary="Interval between changing slides"
+      app:dependency="hud_timer"
+      android:defaultValue="5"
+      android:inputType="number"/>
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,2 @@
+include ':app', ':HUD-SDK'
+rootProject.name='HUD Demo'
