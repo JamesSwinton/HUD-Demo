@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.symbol.zebrahud.ZebraHud;
 import com.zebra.jamesswinton.huddemo.databinding.ActivityMainBinding;
@@ -76,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Init Hud
         mZebraHud.setDisplayOn(true);
-        mZebraHud.setScale(mSharedPrefManager.getInt(PREF_SCALE, 100));
-        mZebraHud.setBrightness(mSharedPrefManager.getInt(PREF_BRIGHTNESS, 100));
-        mZebraHud.setCameraEnabled(Constants.CAMERA_ENABLED);
-        mZebraHud.setOperationMode(Constants.OPERATION_MODE);
-        mZebraHud.setMicrophoneEnabled(Constants.MICROPHONE_ENABLED);
+        mZebraHud.setScale(100);
+        mZebraHud.setBrightness(100);
+        mZebraHud.setCameraEnabled(true);
+        mZebraHud.setMicrophoneEnabled(true);
+        mZebraHud.setOperationMode(ZebraHud.OperationMode.NORMAL);
 
         // Get Existing Slides
         loadSlideImagesIfAvailable(slides -> {
@@ -108,18 +110,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (mZebraHud != null) {
             mZebraHud.onResume(this, mZebraHudEventsListener);
-
-            // Update Settings if required
-            int currentScale = mZebraHud.getScale();
-            int currentBrightness = mZebraHud.getBrightness();
-            int prefScale = mSharedPrefManager.getInt(PREF_SCALE, 100);
-            int prefBrightness = mSharedPrefManager.getInt(PREF_BRIGHTNESS, 100);
-            if (currentScale != prefScale) {
-                mZebraHud.setScale(prefScale);
-            }
-            if (currentBrightness != prefBrightness) {
-                mZebraHud.setScale(prefBrightness);
-            }
         }
     }
 
@@ -139,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         if (mZebraHud != null) {
             if (isFinishing()) { mZebraHud.clearDisplay(); }
-            mZebraHud.onStop(this, !isFinishing());
+            mZebraHud.onStop(this, isFinishing());
         }
     }
 

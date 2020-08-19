@@ -1,2 +1,2 @@
-include ':app', ':HUD-SDK'
+include ':app', ':ZebraHud'
 rootProject.name='HUD Demo'
